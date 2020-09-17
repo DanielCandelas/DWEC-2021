@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<body>
+
+    <script>
+
+        
+        
+        var num;
+        num = Math.floor(Math.random() * 101);
+
+        //primer ejer-------------------------------------------------------------------
+        /*
+        document.write(num);
+        */
+        
+        //Segundo ejer------------------------------------------------------------------
+
+        
+        var numUsuario = prompt("Introduzca un numero")
+
+        /*
+        if (numUsuario > num){
+            document.write("El numero que ha introducido es mayor que " + num);
+        } else {
+            document.write("El numero que ha introducido es menor que " + num);
+        }
+        */
+        
+        //tercer ejer-------------------------------------------------------------------
+
+        
+        if(numUsuario == num){
+            alert("El numero es igual");
+        }
+
+        while(numUsuario != num){
+            if(numUsuario > num){
+               prompt("El numero que ha introducido es mayor, vuelva a intentar");
+            } else {
+               prompt("El numero que ha introducido es menor, vuelva a intentar");
+            }            
+        }
+        
+
+    </script>
+
+
+</body>
