@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<body>
+
+    <script>
+        
+        var num = Math.floor(Math.random() * 11);  
+        var numUsuario = prompt("Introduzca un numero entre 0 y 10")
+
+        if(numUsuario == num){
+            alert("El numero es igual");
+        }
+
+        while(numUsuario != num){
+            if(numUsuario > num){
+                numUsuario = prompt("El numero que ha introducido es mayor, vuelva a intentar");
+            } else {
+                numUsuario = prompt("El numero que ha introducido es menor, vuelva a intentar");
+            }   
+            
+            if(numUsuario == num){
+            alert("El numero es igual");
+            }         
+        }
+
+    </script>
+</body>
