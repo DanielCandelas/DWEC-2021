@@ -4,13 +4,15 @@
     <script>
         
         var num = Math.floor(Math.random() * 11);  
-        var numUsuario = prompt("Introduzca un numero entre 0 y 10")
+        var numUsuario = prompt("Introduzca un numero entre 0 y 10");
+        var contador = 1;
 
         if(numUsuario == num){
             alert("El numero es igual");
         }
 
         while(numUsuario != num){
+            contador++;
             if(numUsuario > num){
                 numUsuario = prompt("El numero que ha introducido es mayor, vuelva a intentar");
             } else {
