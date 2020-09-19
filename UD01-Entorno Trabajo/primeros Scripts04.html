@@ -2,14 +2,18 @@
 <body>
 
     <script>
-        
-        var num1 = prompt("Introduzca un numero entero");
-        var num2 = prompt("Introduzca otro numero entero");
+        var num1;
+        var num2;
+        num1 = prompt("Introduzca un numero entero");
+        num2 = prompt("Introduzca otro numero entero");
 
-        function sumar(a, b){            
+        function sumar(a,b){  
+            
+            a = parseInt(a);
+            b = parseInt(b);
             return a + b;
         }
-
+        
         alert("La suma de los dos numeros introducidos es: " + sumar(num1, num2));
         
     </script>
