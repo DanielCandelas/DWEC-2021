@@ -3,6 +3,8 @@
 
     <script>
 
+        //Las imagenes deben estar en la misma carpeta que el html, sino habria que cambiar el pathing.
+
         var valor = prompt("Introduzca un numero multiple de 5: ");  
  
         var billetes = Array(500, 200, 100, 50, 20, 10, 5);  
@@ -17,7 +19,7 @@
             new Array("EUR_5.jpg")
         );
 
-        
+        //Calculamos cuantos billetes de cada necesitamos enseñar
         for(var i = 0; i < billetes.length; i++){        
 
             if(valor >= billetes[i]){        
@@ -27,6 +29,7 @@
             }
         }
 
+        //Mostramos por pantalla los billetes necesarios
         var cont = 0;
         for(var i = 0; i < vueltas.length; i++){     
             if(vueltas[i] > 0){
