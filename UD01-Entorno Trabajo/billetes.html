@@ -1,13 +1,42 @@
 <!DOCTYPE html>
 <body>
+
     <script>
+
+        var valor = prompt("Introduzca un numero multiple de 5: ");  
+ 
+        var billetes = Array(500, 200, 100, 50, 20, 10, 5);  
+        var vueltas = Array(0,0,0,0,0,0,0);
+        var imagenes = new Array(
+            new Array("EUR_500.jpg"),
+            new Array("EUR_200.jpg"),
+            new Array("EUR_100.jpg"),
+            new Array("EUR_50.jpg"),
+            new Array("EUR_20.jpg"),
+            new Array("EUR_10.jpg"),
+            new Array("EUR_5.jpg")
+        );
+
         
-        var img = EUR_5.jpg
+        for(var i = 0; i < billetes.length; i++){        
 
-        document.getElementById(img.src);
-        document.write(img);
+            if(valor >= billetes[i]){        
+                vueltas[i] = parseInt(valor/billetes[i]);   
 
+                valor = valor - (vueltas[i] * billetes[i]);
+            }
+        }
 
+        var cont = 0;
+        for(var i = 0; i < vueltas.length; i++){     
+            if(vueltas[i] > 0){
+                cont = vueltas[i];
+                while(cont > 0){
+                    document.write("<img src='img/" + imagenes[i] + "' width='100' >"); 
+                    cont--;
+                }                                
+            }
+        }
 
     </script>
 </body>
