@@ -26,18 +26,19 @@ function leoTablero(){
         for (j = 0; j < tablero[i].length; j++) {
             var id_casilla = "casilla_" + i + j;
             tablero[i][j] = document.getElementById(id_casilla).value; 
-            
+                
             if ((tablero[i][j] != "O") && (tablero[i][j] != "_")) {
-                tablero[i][j] != "X"
+                tablero[i][j] = "X"
             }
         }        
     }
-
+    
     console.log(tablero);
 
     comprobarGanador();
     tiradaMaquina();
     comprobarGanador();
+    
 }
 
 function tiradaMaquina(){
