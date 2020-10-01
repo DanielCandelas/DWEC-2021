@@ -17,14 +17,17 @@ function calcular(){
         }
     }
 
-    confirm("Hay " + cont + " numeros que son primos y palindromos a la vez del 0 hasta el " + num + ". Desea verlos?");
-    if (confirm) {
+    var confirmacion = confirm("Hay " + cont + " numeros que son primos y palindromos a la vez del 0 hasta el " + num + ". Desea verlos?");
+    if (confirmacion) {
         /*
         for (var i = 0; i < arrayNum.length; i++) {
             console.log(arrayNum[i]);    
         }
         */
         console.log(arrayNum);
+        document.write(arrayNum.join(" , "));
+    } else {
+        console.log("ADIOS");
     }
 }
 
