@@ -1,14 +1,15 @@
 
 var tablero = new Array;
 
+
 tablero[0] = ["_", "_", "_"];
-tablero[1] = ["_", "O", "_"];
+tablero[1] = ["_", "o", "_"];
 tablero[2] = ["_", "_", "_"];
 
-var fin_partida = 0;
+var empate = 0;
+var ganar = false;
 
-
-function pintoTablero(){
+function pintoTablero(){  //Pintamos el tablero con las imagenes 
 
     for (i = 0; i < tablero.length; i++) {
         for (j = 0; j < tablero[i].length; j++) {
@@ -30,74 +31,155 @@ function pintoTablero(){
 }
 
 
-function jugada(casilla){   // cuado hago click en boton ...
-   
-    console.log(casilla.id);
-    casilla_fila_i=casilla.id.substring(8,9);
-    casilla_fila_j=casilla.id.substring(9,10);
-    console.log("i="+casilla_fila_i+" j="+casilla_fila_j);
-    console.log(tablero[casilla_fila_i][casilla_fila_j]);
+function turnoX(casilla){ //Llamamos a la casilla donde hemos hecho click.   
+
+    posicionI = casilla.id.charAt(8); //Averiguamos la i de la casilla cogiendo el caracter en la posicion 8
+    posicionJ = casilla.id.charAt(9); //Averiguamos la j de la casilla cogiendo el caracter en la posicion 9 
     
-    if(tablero[casilla_fila_i][casilla_fila_j]=="_"){
-        tablero[casilla_fila_i][casilla_fila_j]="x";
-        pinto_tablero();
-        compruebo_filas_columnas_diagonales("x"); // compruebo si ganan las x
-        jugada_maquina();   // turno de la máquina
-        compruebo_filas_columnas_diagonales("o"); // comprueba si ganan los o
+    if(tablero[posicionI][posicionJ] == "_"){ //Si es una casilla libre "_" 
+        tablero[posicionI][posicionJ] = "x";  //La convertimos en "x"
+
+        
+        
+        pintoTablero();     //Llamamos a pintoTablero para que se actualize
+        comprobarGanador(); //Comprobamos si hay ganador
+        
+        /*Es para que no se repita el alert si el jugador es el ganador ya que entraria en 
+        comprobarGanador por segunda vez despues de tiradaMaquina.*/
+        if (!ganar) { 
+            tiradaMaquina();    //Turno de la maquina
+            comprobarGanador(); //Comprobamos si hay ganador
+        }
+        
     }
 }
 
 
-function compruebo_filas_columnas_diagonales(jugador){  // compruebo si se gana o empata
-
-        if((tablero[0][0]==tablero[0][1])&&(tablero[0][1]==tablero[0][2])&&(tablero[0][2]==jugador)){ //filas
-            alert (" Ha ganado "+jugador);
-            location.reload();
-        }
-        if((tablero[1][0]==tablero[1][1])&&(tablero[1][1]==tablero[1][2])&&(tablero[1][2]==jugador)){
-            alert (" Ha ganado "+jugador);
-            location.reload();
-        }
-        if((tablero[2][0]==tablero[2][1])&&(tablero[2][1]==tablero[2][2])&&(tablero[2][2]==jugador)){
-            alert (" Ha ganado "+jugador);
-            location.reload();
-        }
-        if((tablero[0][0]==tablero[1][1])&&(tablero[1][1]==tablero[2][2])&&(tablero[2][2]==jugador)){ //diagonales
-            alert (" Ha ganado "+jugador);
-            location.reload();
-        }
-        if((tablero[0][2]==tablero[1][1])&&(tablero[1][1]==tablero[2][0])&&(tablero[2][0]==jugador)){
-            alert (" Ha ganado "+jugador);
-            location.reload();
-        }
-        if((tablero[0][0]==tablero[1][0])&&(tablero[1][0]==tablero[2][0])&&(tablero[2][0]==jugador)){ //columnas
-            alert (" Ha ganado "+jugador);
-            location.reload();
-        }
-        if((tablero[0][1]==tablero[1][1])&&(tablero[1][1]==tablero[2][1])&&(tablero[2][1]==jugador)){
-            alert (" Ha ganado "+jugador);
-            location.reload();
-        }
-        if((tablero[0][2]==tablero[1][2])&&(tablero[1][2]==tablero[2][2])&&(tablero[2][2]==jugador)){
-            alert (" Ha ganado "+jugador);
-            location.reload();
-        }
-        if(fin_partida==4){   // si la maquina lleva 4 turnos, se acaba en empate
-            alert("EMPATE!!!!");
-            location.reload();
-        }
+function tiradaMaquina(){
+    //Aleatorio para añadir o
+    var r1 = Math.floor(Math.random() * 3);
+    var r2 = Math.floor(Math.random() * 3);
+    
+    if (tablero[r1][r2] == "_") {   //Si es una casilla libre "_" 
+        tablero[r1][r2] = "o";      //La convertimos en "o"
+        empate++;           //Aumentamos el contador de tiradas hasta que se produzca empate (4)
+        pintoTablero();     //Llamamos a pintoTablero para que se actualize
+    } else {
+        tiradaMaquina();    //Si no esta vacia "_", volvemos a ejecutar tiradaMaquina hasta encontrar una vacia "_"
+    }
 }
 
- 
-function jugada_maquina(){  // turno de la máquina
-    jugada_x=Math.floor(Math.random() * 3); //aleatorio 0,1 o 2
-    jugada_y=Math.floor(Math.random() * 3);
-    if(tablero[jugada_x][jugada_y]=="_"){ // si esta vacío, le pongo un 'o'
-        tablero[jugada_x][jugada_y]="o";
-        fin_partida++;
-        pinto_tablero();      
-     }else{    // si no esta vacío, vuelvo a buscar
-        jugada_maquina();
+function comprobarGanador(){
+    //comprobar si hay 3 en raya
+
+    //Empate
+    if(empate == 4){
+        alert("Los jugadores han empatado");
+        location.reload();
+    }
+
+    // I = 0
+    if ((tablero[0][0] == tablero[0][1]) && (tablero[0][1] == tablero[0][2]) && (tablero[0][0] == tablero[0][2]) && (tablero[0][0] != "_")) {
+        if (tablero[0][0] == "o") {
+            alert("La maquina es la ganadora");
+            ganar = true;
+            location.reload();
+        } else {
+            alert("El jugador es el ganador");
+            ganar = true;
+            location.reload();
+        }        
+    }
+
+    // I = 1
+    if ((tablero[1][0] == tablero[1][1]) && (tablero[1][1] == tablero[1][2]) && (tablero[1][0] == tablero[1][2]) && (tablero[1][0] != "_")) {
+        if (tablero[1][0] == "o") {
+            alert("La maquina es la ganadora");
+            ganar = true;
+            location.reload();
+        } else {
+            alert("El jugador es el ganador");
+            ganar = true;
+            location.reload();
+        }        
+    }
+
+    // I = 2
+    if ((tablero[2][0] == tablero[2][1]) && (tablero[2][1] == tablero[2][2]) && (tablero[2][0] == tablero[2][2]) && (tablero[2][0] != "_")) {
+        if (tablero[2][0] == "o") {
+            alert("La maquina es la ganadora");
+            ganar = true;
+            location.reload();
+        } else {
+            alert("El jugador es el ganador");
+            ganar = true;
+            location.reload();
+        }        
+    }
+
+    //J = 0
+    if ((tablero[0][0] == tablero[1][0]) && (tablero[1][0] == tablero[2][0]) && (tablero[0][0] == tablero[2][0]) && (tablero[0][0] != "_")) {
+        if (tablero[0][0] == "o") {
+            alert("La maquina es la ganadora");
+            ganar = true;
+            location.reload();
+        } else {
+            alert("El jugador es el ganador");
+            ganar = true;
+            location.reload();
+        }        
+    }
+
+    //J = 1
+    if ((tablero[0][1] == tablero[1][1]) && (tablero[1][1] == tablero[2][1]) && (tablero[0][1] == tablero[2][1]) && (tablero[0][1] != "_")) {
+        if (tablero[0][1] == "o") {
+            alert("La maquina es la ganadora");
+            ganar = true;
+            location.reload();
+        } else {
+            alert("El jugador es el ganador");
+            ganar = true;
+            location.reload();
+        }        
+    }
+
+    //J = 2
+    if ((tablero[0][2] == tablero[1][2]) && (tablero[1][2] == tablero[2][2]) && (tablero[0][2] == tablero[2][2]) && (tablero[0][2] != "_")) {
+        if (tablero[0][2] == "o") {
+            alert("La maquina es la ganadora");
+            ganar = true;
+            location.reload();
+        } else {
+            alert("El jugador es el ganador");
+            ganar = true;
+            location.reload();
+        }        
+    }
+
+    //Diagona principal (I = J)
+    if ((tablero[0][0] == tablero[1][1]) && (tablero[0][0] == tablero[2][2]) && (tablero[1][1] == tablero[2][2]) && (tablero[0][0] != "_")) {
+        if (tablero[0][0] == "o") {
+            alert("La maquina es la ganadora");
+            ganar = true;
+            location.reload();
+        } else {
+            alert("El jugador es el ganador");
+            ganar = true;
+            location.reload();
+        }        
+    }
+
+    //Diagonal inversa
+    if ((tablero[0][2] == tablero[1][1]) && (tablero[0][2] == tablero[2][0]) && (tablero[1][1] == tablero[2][0]) && (tablero[1][1] != "_")) {
+        if (tablero[1][1] == "o") {
+            alert("La maquina es la ganadora");
+            ganar = true;
+            location.reload();
+        } else {
+            alert("El jugador es el ganador");
+            ganar = true;
+            location.reload();
+        }        
     }
 }
 
