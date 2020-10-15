@@ -3,6 +3,7 @@ var time = 0;
 var myInterval = setInterval(crono, 1);
 var primer = false;
 var laps = 0;
+var rondas = 0;
 var cont = 300;
 
 function pintoCirculoRojo(){
@@ -10,6 +11,7 @@ function pintoCirculoRojo(){
 
     if (primer) {
         laps++;
+        rondas++;
         if (laps == 5) {
             cont -= 50;
             laps = 0;
@@ -52,9 +54,10 @@ function crono(){
     document.getElementById("cronometro").innerHTML = time;
 
     if(time > cont){
-        alert("Has perdido");
+        alert("Has perdido, has durado " + rondas + " rondas.");
         time = 0;
         cont = 300;
+        rondas = 0;
     }
 }
 
