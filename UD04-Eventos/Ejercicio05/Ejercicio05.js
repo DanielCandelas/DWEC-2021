@@ -4,17 +4,19 @@ var myIntrval;
 
 function init(){
 
-    document.getElementById("salida").onmouseover = empezarJuego;
+    document.getElementById("salida").onmouseout = empezarJuego;
     
 }
 
 function empezarJuego(){    
 
-    myIntrval = setInterval(intervalo, 100); 
-
+    myIntrval = setInterval(intervalo, 100);
+    
     document.getElementById("pared_0").onmouseover = muestraMensaje;
     document.getElementById("pared_1").onmouseover = muestraMensaje;
-    document.getElementById("pared_2").onmouseover = muestraMensaje;    
+    document.getElementById("pared_2").onmouseover = muestraMensaje; 
+    document.getElementById("tablero").onmouseleave = muestraMensaje;
+      
     document.getElementById("final").onmouseover = acabarJuego;
 }
 
