@@ -7,6 +7,8 @@ var primer = false;     //Boolean para que entre solo la primera vez en primerCi
 var laps = 0;           //Rondas, cada 5 se baja el tiempo limite en 50 mls
 var rondas = 0;         //Contador para saber cuantas rondas has hecho al final
 var cont = 300;         //Tiempo permitido para clicar, cada 5 laps se baja 50 mls 
+var noRepetir = 0;
+var num_circulo = 0;
 
 function pintoCirculoRojo(){
 
@@ -23,11 +25,16 @@ function pintoCirculoRojo(){
         
         document.getElementById(id_circulo).removeAttribute("class");
 
-        var num_circulo = Math.floor(Math.random() * 9); //Conseguimos un numero random entre 0 y 8, ese sera el circulo que pintemos
-        console.log(num_circulo);
-    
+        do{
+            num_circulo = Math.floor(Math.random() * 9); //Conseguimos un numero random entre 0 y 8, ese sera el circulo que pintemos
+            console.log(num_circulo);
+        } while(noRepetir == num_circulo);
+            
+        noRepetir = num_circulo;      
+
         id_circulo = "circulo_" + num_circulo; //Conseguimos la id del circulo
         console.log(id_circulo);
+
     
         document.getElementById(id_circulo).className="objetivo"; //Pintamos el circulo 
         
@@ -41,7 +48,7 @@ function pintoCirculoRojo(){
 
 function primerCirculo(){ //Este programa pinta el primer circulo
 
-    var num_circulo = Math.floor(Math.random() * 9); //Conseguimos un numero random entre 0 y 8, ese sera el circulo que pintemos
+    num_circulo = Math.floor(Math.random() * 9); //Conseguimos un numero random entre 0 y 8, ese sera el circulo que pintemos
     console.log(num_circulo);
 
     id_circulo = "circulo_" + num_circulo; //Conseguimos la id del circulo
@@ -50,6 +57,8 @@ function primerCirculo(){ //Este programa pinta el primer circulo
     document.getElementById(id_circulo).className="objetivo"; //Pintamos el circulo 
 
     primer = true;
+
+    noRepetir = num_circulo;
 
     document.getElementById(id_circulo).onclick = pintoCirculoRojo;
 }
