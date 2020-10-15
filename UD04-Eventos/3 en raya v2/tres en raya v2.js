@@ -38,8 +38,6 @@ function turnoX(casilla){ //Llamamos a la casilla donde hemos hecho click.
     
     if(tablero[posicionI][posicionJ] == "_"){ //Si es una casilla libre "_" 
         tablero[posicionI][posicionJ] = "x";  //La convertimos en "x"
-
-        
         
         pintoTablero();     //Llamamos a pintoTablero para que se actualize
         comprobarGanador(); //Comprobamos si hay ganador
