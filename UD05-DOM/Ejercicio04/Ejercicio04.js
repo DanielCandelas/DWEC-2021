@@ -2,8 +2,8 @@
 window.onload = function(){
 
     for(i = 1; i <= 3; i++){
-        document.getElementsById("p1").onclick= ocultar;
-        document.getElementsById("p1").ondbclick= eliminar;
+        document.getElementsById("p"+i).onclick= ocultar;
+        document.getElementsById("p"+i).ondbclick= eliminar;
     }
 }
 
