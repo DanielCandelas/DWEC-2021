@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicio 06</title>
+    <script src="ejercicio06.js"></script>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+    
+    <div>
+        <h3>Introduccion de facturas</h3>  
+        Producto: <input type="text" id="producto"> 
+        Cantidad: <input type="number" id="cantidad">
+        Precio Unitario: <input type="number" id="precioUnitario">
+        <input type="button" value="añadir" onclick="filaNueva()">            
+    </div>
+
+    <table> 
+        <thead>
+            <th>Producto:</th>
+            <th>Cantidad:</th>
+            <th>Precio Unitario:</th>
+            <th>Precio Total:</th>
+            <th>Acciones:</th>
+        </thead>
+
+        <tbody id="cuerpo">
+
+        </tbody>
+
+        <tfoot>
+            <tr><th>Base Imponible</th><th><span id="base"></span></th></tr>
+            <tr><th>IVA 21%</th></tr>
+            <tr><th>Total Factura</th></tr>
+        </tfoot>
+
+    </table>
+    
+</body>
+</html>

@@ -7,6 +7,7 @@ function crearCheck(){
     for(i = 0; i < 100; i ++){
 
         var chek = document.createElement("input"); 
+        
         var salto = document.createElement("br");
         
         chek.type = "checkbox";
