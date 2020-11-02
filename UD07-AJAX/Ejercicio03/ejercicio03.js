@@ -11,10 +11,10 @@ function enviar_peticion(accion){
 
 
         }
-    }    
+    };   
 
-    conexion.open("POST", "UD07-3AJAX.php", true);
-    conexion.setRequestHeader("Content-Type", "application/x-www-from-urlencoded");
-    conexion.send('accion=' + accion);
+    conexion.open('POST','UD07-3AJAX.php',true);
+    conexion.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+    conexion.send('accion='+accion);     
 }
 

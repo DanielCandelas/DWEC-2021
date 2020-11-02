@@ -13,7 +13,7 @@ function ajax(){
 
             document.getElementById("respuesta").innerHTML = objeto_respuesta.message;
         }
-    }
+    };
 
     conexion.open('GET', 'holamundo.json', true);
     conexion.send();

@@ -11,7 +11,7 @@ function enviar_peticion(accion){
 
 
         }
-    }    
+    };  
 
     conexion.open("POST", "UD09-2AJAX.php", true);
     conexion.setRequestHeader("Content-Type", "application/x-www-from-urlencoded");

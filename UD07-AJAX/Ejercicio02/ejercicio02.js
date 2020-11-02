@@ -31,7 +31,7 @@ function ajax(){
             document.getElementById("contenido").appendChild(miSelect);
 
         }
-    }    
+    };    
 
     conexion.open('GET', 'provincias.json', true);
     conexion.send();
