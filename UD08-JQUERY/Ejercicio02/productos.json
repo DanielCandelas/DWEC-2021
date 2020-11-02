@@ -1,6 +1,6 @@
 {
  "nombre":"Lista de precios",
-  "producto": [
+  "productos": [
     {
       "name": "Elije",
       "precio": 0,
