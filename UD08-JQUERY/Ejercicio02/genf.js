@@ -47,6 +47,7 @@ function recalcular(){
 function relleno_select(){
     $.ajax({
         url : 'productos.json', 
+        data : {},
         type : 'POST',    
         dataType : 'json', 
 
