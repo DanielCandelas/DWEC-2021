@@ -4,7 +4,6 @@ var nLineas;
 
 window.onload = function () {
 
-    
 //CLIENTE
     $(".modalNuevoCliente").hide();
     $(".modalEditarCliente").hide();
@@ -50,7 +49,6 @@ window.onload = function () {
         editar_cliente();
         $(".modalEditarCliente").hide();
     });
-
     
 //PEDIDOS
     $(".modalNuevoPedido").hide();
@@ -130,9 +128,6 @@ window.onload = function () {
         insertar_linea_pedido(idAux, numero);
         $(".modalNuevaLineaPedido").hide();                          
     });   
-
-    
-
 }
 
 //CLIENTE
@@ -271,7 +266,6 @@ function editar_cliente(){
         }
     });
 }
-
 
 //PEDIDOS
 function listar_pedidos() {
@@ -436,6 +430,7 @@ function relleno_select(){
 //LINEAS PEDIDO
 function listar_lineas_pedidos(objeto_dato) {  //Falta que se cierre -------------------------------
 
+    $(".tablaLineasPedido").remove();
     $("."+objeto_dato.idPedido+"").after("<table class='tablaLineasPedido'><tr><th>Linea</th> <th>Cantidad</th> <th>Producto</th ><th>Acciones</th></tr></table>");
     //console.log(objeto_dato);
     $.ajax({
@@ -545,5 +540,4 @@ function buscar_nlinea(idAux){
         }
     });
 }
-
- //nlinea se recoge de la base de datos, poner el nombre envez de dni en pedidos
+//nlinea se recoge de la base de datos, poner el nombre envez de dni en pedidos
