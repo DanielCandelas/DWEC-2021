@@ -15,4 +15,7 @@ function validar(){
         alert("La edad esta vacia, es manor de 0 o mayor de 100, o no es un numero");
         return false;
     }
+
+
+
 }
