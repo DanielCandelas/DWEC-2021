@@ -17,3 +17,31 @@ jQuery.extend(jQuery.validator.messages, {
     max: jQuery.validator.format("Please enter a value less than or equal to {0}."),
     min: jQuery.validator.format("Please enter a value greater than or equal to {0}.")
 });
+
+//Poner el script en el html la libreria validate
+
+//Poniendo reglas en el html
+jQuery(function() {
+    jQuery( "#formulario_de_prueba" ).validate();
+});
+
+
+//Sin poner reglas en el html
+jQuery(function() {
+    jQuery( "#formulario_de_prueba" ).validate({
+            rules: {
+                    nombre: {
+                            required: true,
+                            minlength: 4,
+                            maxlength: 20
+                    }
+            },
+            messages: {
+                    nombre: {
+                            required: "Hey vamos, por favor, dános tu nombre",
+                            minlength: $.format("Necesitamos por lo menos {0} caracteres"),
+                            maxlength: $.format("{0} caracteres son demasiados!")
+                    }
+            }
+    });
+});
